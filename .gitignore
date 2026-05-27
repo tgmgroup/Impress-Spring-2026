@@ -1,0 +1,256 @@
+## =========================================================
+## Visual Studio / .NET / Multi-tool .gitignore
+## Based on GitHub VisualStudio.gitignore + custom additions
+## =========================================================
+
+# =========================================================
+# User-specific & local files
+# =========================================================
+*.suo
+*.user
+*.userosscache
+*.rsuser
+*.sln.docstates
+*.userprefs
+*.env
+.env*.local
+mono_crash.*
+
+/TODO
+
+# =========================================================
+# Build output & artifacts
+# =========================================================
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ebugPS/
+[Rr]elease/
+[Rr]eleasePS/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Aa][Rr][Mm]64[Ee][Cc]/
+bld/
+build/
+artifacts/
+dist/
+web-build/
+publish/
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+_pkginfo.txt
+ClientBin/
+
+# Test & benchmark output
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+BenchmarkDotNet.Artifacts/
+
+# =========================================================
+# Compiled & intermediate files
+# =========================================================
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.ilk
+*.idb
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.tlog
+*.log
+*_wpftmp.csproj
+*_i.c
+*_p.c
+*_h.h
+.builds
+*.pidb
+*.svclog
+*.scc
+*.vspscc
+*.vssscc
+*.binlog
+
+# Allow directory-level build config
+!Directory.Build.rsp
+
+# =========================================================
+# IDEs & editors
+# =========================================================
+
+## Visual Studio
+.vs/
+.vshistory/
+.localhistory/
+.history/
+MigrationBackup/
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+Generated\ Files/
+Generated_Code/
+*.rptproj.bak
+
+## Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+*.code-workspace
+*.vsix
+
+## JetBrains / ReSharper / Rider
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+## Visual C++ caches
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# =========================================================
+# Dependency managers
+# =========================================================
+
+## NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+
+## Node.js
+node_modules/
+.ntvs_analysis.dat
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+## Paket
+.paket/paket.exe
+paket-files/
+
+## Python
+__pycache__/
+*.pyc
+
+# =========================================================
+# Testing & coverage
+# =========================================================
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+*.received.*
+_Chutzpah*
+FakesAssemblies/
+
+coverage*.json
+coverage*.xml
+coverage*.info
+*.coverage
+*.coveragexml
+.axoCover/*
+!.axoCover/settings.json
+OpenCover/
+
+# =========================================================
+# Documentation & analysis tools
+# =========================================================
+DocProject/buildhelp/
+DocProject/Help/
+*.GhostDoc.xml
+StyleCopReport.xml
+FodyWeavers.xsd
+
+# =========================================================
+# Azure / cloud / CI
+# =========================================================
+csx/
+*.build.csdef
+ecf/
+rcf/
+PublishScripts/
+ASALocalRun/
+.aws-sam
+.fake/
+_TeamCity*
+
+# =========================================================
+# Databases & BI
+# =========================================================
+*.mdf
+*.ldf
+*.ndf
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup*.rdl
+
+# =========================================================
+# Native / mobile / security files
+# =========================================================
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+*.pfx
+*.nvuser
+
+# =========================================================
+# OS & miscellaneous
+# =========================================================
+.DS_Store
+~$*
+*~
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.jfm
+*.dbmdl
+*.dbproj.schemaview
+healthchecksdb
+orleans.codegen.cs
+
+# =========================================================
+# Optional library rule
+# =========================================================
+*.a
+!lib.a
