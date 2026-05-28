@@ -103,9 +103,9 @@ html.dark {
 	--tooltip-color: rgb(216, 247, 211); /* Highlight the word */
 	--tooltip-text-color: #fff; /* Tooltip text color for dark mode */
 	--tooltip-bg-color: #29282fef; /* Tooltip background color for dark mode */
-	--slide-button-bg: rgba(255, 255, 255, 0.2);
+	--slide-button-bg: rgba(148, 148, 148, 0.3);
 	--slide-button-hover-bg: rgba(255, 255, 255, 0.4);
-	--slide-button-text: white;
+	--slide-button-text: rgba(218, 252, 236, 0.866);
 
 	/* --- Hero Gradient Colors (Dark Mode - Original Dark Rainbow) --- */
 	--hero-grad-1: hsl(0, 64%, 6%); /* Dark Red */
@@ -357,40 +357,6 @@ body {
 /* Slide Content styles are handled by the #hero selectors above */
 
 /* --- Slide Navigation Buttons (Prev/Next - Desktop Default) --- */
-#prev-slide,
-#next-slide {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	background-color: var(--slide-button-bg);
-	color: var(--slide-button-text);
-	border: none;
-	font-size: 24px;
-	font-weight: bold;
-	padding: 10px 15px;
-	cursor: pointer;
-	border-radius: 5px;
-	z-index: 5; /* Above slides, below nav */
-	transition:
-		background-color 0.3s ease,
-		color 0.3s ease,
-		right 0.3s ease,
-		left 0.3s ease;
-}
-#prev-slide:hover,
-#next-slide:hover {
-	background-color: var(--slide-button-hover-bg);
-}
-#prev-slide {
-	left: calc(60px + 15px);
-}
-#next-slide {
-	right: calc(0px + 15px);
-}
-
-/* Slide Content styles are handled by the #hero selectors above */
-
-/* --- Slide Navigation Buttons (Prev/Next - Desktop Default) --- */
 #prev-portrait,
 #next-portrait {
 	position: absolute;
@@ -416,10 +382,10 @@ body {
 	background-color: var(--slide-button-hover-bg);
 }
 #prev-portrait {
-	left: calc(60px + 15px);
+	left: calc(55px + 15px);
 }
 #next-portrait {
-	right: calc(0px + 15px);
+	right: calc(12vw + 15px);
 }
 
 /* --- Snowfall Canvas --- */
@@ -476,8 +442,8 @@ body {
 
 	/* Grid Layout Setup */
 	display: grid;
-	grid-template-columns: 65px 0vw 81vw 10vw; /* sidebar | gap | content | sidebar */
-	grid-template-areas: "sidebar-left gap-left content-center sidebar-right";
+	grid-template-columns: 65px 5px 1fr 5px 12.5vw; /* sidebar | gap | content | gap | sidebar */
+	grid-template-areas: "sidebar-left gap-left content-center gap-right sidebar-right";
 	grid-gap: 0vw; /* Explicitly setting gap to 0 */
 	z-index: 1; /* Base layer for content */
 }
@@ -505,6 +471,7 @@ body {
 #container .gap-left {
 	grid-area: gap-left;
 	height: 100%;
+	background-color: var(--bg-color-divs);
 
 	z-index: 0; /* Lowest z-index */
 }
@@ -526,12 +493,20 @@ body {
 	   background-repeat: no-repeat; */
 }
 
+#container .gap-right {
+	grid-area: gap-right;
+	height: 100%;
+	background-color: var(--bg-color-divs);
+
+	z-index: 0; /* Lowest z-index */
+}
+
 #container .sidebar-right {
 	grid-area: sidebar-right;
 	display: flex;
 	height: 100%;
-	align-items: start;
-	justify-content: start;
+	align-items: flex-end;
+	justify-content: right;
 	flex-direction: column;
 	z-index: 1; /* Above gap, below content */
 	border-radius: 0.15vw;
@@ -541,7 +516,7 @@ body {
 	/* Moved from separate .sidebar class for clarity as it applies here */
 	background-color: var(--bg-color-divs);
 	padding-top: 7vh; /* Moved from .sidebar */
-	padding-inline: 15%;
+	padding-inline: 1.5vw;
 	gap: 5vh; /* Added gap between items */
 }
 
@@ -1108,6 +1083,11 @@ audio controls {
 		display: none; /* Example: hide the gap in vertical layout */
 		height: 0vh;
 	}
+	#container .gap-right {
+		/* Styles for the gap in vertical layout (might be less relevant or removed) */
+		display: none; /* Example: hide the gap in vertical layout */
+		height: 0vh;
+	}
 
 	#container .content-center {
 		/* Styles for the content in vertical layout */
@@ -1120,11 +1100,12 @@ audio controls {
 		width: 100%; /* Make it full width */
 		height: 10vh;
 		flex-direction: row;
+		align-items: center;
 		background-color: var(--bg-color-divs);
 
 		justify-content: center;
 
-		padding-top: 1vh; /* Moved from .sidebar */
+		padding-top: 0vh; /* Moved from .sidebar */
 		gap: 3vw; /* Added gap between items */
 	}
 
