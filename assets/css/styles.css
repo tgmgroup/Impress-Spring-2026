@@ -37,7 +37,6 @@
 	box-sizing: border-box;
 	margin: 0; /* Reset margins */
 	padding: 0; /* Reset paddings */
-	box-sizing: border-box;
 }
 
 /* --- Theme Variables --- */
@@ -181,7 +180,7 @@ body {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	gap: 12px;
-	z-index: 10;
+	z-index: 30;
 	transition:
 		background-color 0.3s ease,
 		width 0.3s ease,
@@ -275,7 +274,7 @@ body {
 	color: var(--text-color); /* USE THEME VARIABLE */
 	text-shadow: var(--hero-text-shadow); /* Use theme-dependent shadow */
 	position: relative; /* Ensure text is layered above background */
-	z-index: 2;
+	z-index: 5;
 }
 /* Style hero CTA button using theme variables for its specific context */
 #hero .cta-button {
@@ -284,7 +283,7 @@ body {
 	text-shadow: none;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	position: relative;
-	z-index: 2;
+	z-index: 5;
 	transition:
 		background-color 0.3s ease,
 		color 0.3s ease;
@@ -302,7 +301,7 @@ body {
 	align-items: center;
 	min-height: 200px;
 	position: relative;
-	z-index: 1; /* Behind text/buttons */
+	z-index: 3; /* Behind text/buttons */
 	height: 100%; /* Ensure text is centered vertically */
 }
 .slide {
@@ -396,7 +395,7 @@ body {
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	z-index: 1;
+	z-index: 4;
 	/* display initial state set by JS */
 }
 
@@ -445,7 +444,7 @@ body {
 	grid-template-columns: 65px 5px 1fr 5px 12.5vw; /* sidebar | gap | content | gap | sidebar */
 	grid-template-areas: "sidebar-left gap-left content-center gap-right sidebar-right";
 	grid-gap: 0vw; /* Explicitly setting gap to 0 */
-	z-index: 1; /* Base layer for content */
+	z-index: 2; /* Base layer for content */
 }
 
 /* --- Grid Areas within #container --- */
@@ -457,7 +456,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	z-index: 1; /* Above gap, below content */
+	z-index: 5; /* Above gap, below content */
 	border-radius: 0.15vw;
 	/* Combined box-shadow rule */
 	/* box-shadow: 0vw 0.01vw 0.05vw rgba(0, 0, 0, 0.5); */
@@ -485,7 +484,7 @@ body {
 	border: 0vw;
 	background-color: var(--bg-color-divs);
 	/* box-shadow: 0vw 0.01vw 0.5vw rgba(0, 0, 0, 0.2); */
-	z-index: 2; /* Highest z-index */
+	z-index: 3; /* Highest z-index */
 	/* Example background commented out */
 	/* background-image: url('./Web/page01.jpg');
 	   background-size: contain;
@@ -508,7 +507,7 @@ body {
 	align-items: flex-end;
 	justify-content: right;
 	flex-direction: column;
-	z-index: 1; /* Above gap, below content */
+	z-index: 5; /* Above gap, below content */
 	border-radius: 0.15vw;
 	/* Combined box-shadow rule */
 	/* box-shadow: 0vw 0.01vw 0.05vw rgba(0, 0, 0, 0.5); */
@@ -821,7 +820,7 @@ a.button {
 .header-left {
 	height: 6vw;
 	width: 6vw;
-	z-index: 3; /* Ensure it's above sidebar background? */
+	z-index: 4; /* Ensure it's above sidebar background? */
 	margin: 0.5vw;
 	background: none; /* Explicitly no background */
 }
@@ -916,23 +915,6 @@ a.button {
 	border-radius: 0vw;
 }
 
-/* Float-based Columns (Consider Flexbox/Grid for modern layouts) */
-.row > .column {
-	padding: 0 0.8vw;
-}
-
-.row:after {
-	/* Float clearfix */
-	content: "";
-	display: table;
-	clear: both;
-}
-
-.column {
-	float: left;
-	width: 25%; /* Example: 4 columns */
-}
-
 .clickable {
 	cursor: pointer;
 }
@@ -953,10 +935,7 @@ audio {
 
 	cursor: pointer;
 	transition: color 0.2s;
-	z-index: 10; /* Ensure it's above other content */
-}
 
-audio controls {
 	background-color: var(--bg-color); /* Match close button style */
 	color: var(--text-color); /* Match close button style */
 	border-radius: 0.5vw; /* Rounded corners for controls */
@@ -1006,11 +985,11 @@ audio controls {
 	#icon-nav button {
 		font-size: 18px;
 
-		padding: 3px;
+		padding: 6px;
 		border-radius: 3px;
 
-		width: 15px;
-		height: 15px;
+		width: 36px;
+		height: 36px;
 		flex-shrink: 0;
 		box-shadow: var(--box-shadow);
 	}
@@ -1062,8 +1041,9 @@ audio controls {
 		grid-template-rows: 60px auto auto auto; /* Define rows based on content */
 		grid-template-areas:
 			"sidebar-left"
-			"content-center"
 			"gap-left"
+			"content-center"
+			"gap-right"
 			"sidebar-right"; /* Adjust order as needed */
 		/* You might want to add a vertical gap if desired */
 		grid-row-gap: 0px; /* Example vertical gap */
@@ -1080,8 +1060,8 @@ audio controls {
 
 	#container .gap-left {
 		/* Styles for the gap in vertical layout (might be less relevant or removed) */
-		display: none; /* Example: hide the gap in vertical layout */
-		height: 0vh;
+		/* Example: hide the gap in vertical layout */
+		height: 5px;
 	}
 	#container .gap-right {
 		/* Styles for the gap in vertical layout (might be less relevant or removed) */
@@ -1098,7 +1078,7 @@ audio controls {
 	#container .sidebar-right {
 		/* Styles for the top sidebar in vertical layout */
 		width: 100%; /* Make it full width */
-		height: 10vh;
+		height: 8vh;
 		flex-direction: row;
 		align-items: center;
 		background-color: var(--bg-color-divs);

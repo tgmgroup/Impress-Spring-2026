@@ -103,173 +103,6 @@
 					data-landscape-bg="/assets/Web/page00.webp"
 				>
 					<div class="left-content">
-						<div class="items hidden-text" id="text1-1">
-							<!-- Modal content -->
-							<div class="modal-content">
-								<div class="text-container">
-									<div class="modal-header">
-										<span
-											class="close clickable"
-											onClick="stopAudioPlayer(),ResetPlayAndShowWithNav('audio1-1', 'text1-1', 'play1-1', 'prev-portrait', 'next-portrait'), ResetPlayAndShowWithNav('audio1-1a', 'text1-1', 'play1-1a', 'prev-portrait', 'next-portrait')"
-											>&times;</span
-										>
-										<span
-											class="modal-play-left clickable"
-											onClick="PlaySoundWithControls('audio1-1a', 'play1-1a')"
-										></span>
-									</div>
-
-									<div class="modal-body">
-										<h1>Introduction</h1>
-
-										<p
-											style="
-												font-size: 2rem;
-												text-align: left;
-												text-indent: 1rem;
-												margin: 2rem;
-												padding: 1vh;
-												text-align: justify;
-											"
-										>
-											<span class="tooltip">
-												Spring is a season of change.
-												<span class="tooltiptext"> 春は変化の季節です。 </span>
-											</span>
-											<span class="tooltip">
-												From the dark cold days of winter, the weather gets
-												warmer, flowers bloom, and people start going outside
-												and exploring.
-												<span class="tooltiptext">
-													冬の暗く寒い日々から、気候は暖かくなり、花が咲き、人々は外に出て探索を始めます。
-												</span>
-											</span>
-											<span class="tooltip">
-												It’s a time to head out and start new adventures.
-												<span class="tooltiptext">
-													外へ飛び出して、新しい冒険を始める時なのです。
-												</span>
-											</span>
-										</p>
-
-										<p
-											style="
-												font-size: 2rem;
-												text-align: left;
-												text-indent: 1rem;
-												margin: 2rem;
-												padding: 1vh;
-												text-align: justify;
-											"
-										>
-											<span class="tooltip">
-												In this issue, we also head out on a journey to learn.
-												<span class="tooltiptext">
-													今号では、私たちも学びの旅へと「出発」します。
-												</span>
-											</span>
-											<span class="tooltip">
-												We play with the names of different countries around the
-												world.
-												<span class="tooltiptext">
-													世界中のさまざまな国名を使って言葉遊びをします。
-												</span>
-											</span>
-											<span class="tooltip">
-												We visit Bali, one of the most famous tourist
-												destinations ever.
-												<span class="tooltiptext">
-													史上最も有名な観光地の一つであるバリ島を訪れます。
-												</span>
-											</span>
-											<span class="tooltip">
-												And we learn about animals that head out and make their
-												own long journeys.
-												<span class="tooltiptext">
-													引して、自ら遠い旅へと出発する動物たちについても学びます。
-												</span>
-											</span>
-										</p>
-
-										<p
-											style="
-												font-size: 2rem;
-												text-align: left;
-												text-indent: 1rem;
-												margin: 2rem;
-												padding: 1vh;
-												text-align: justify;
-											"
-										>
-											<span class="tooltip">
-												Each page in this magazine is a different way to head
-												out and learn about our world.
-												<span class="tooltiptext">
-													この雑誌のすべてのページが、外の世界へ「飛び出し」、私たちの世界について学ぶための異なる方法になっています。
-												</span>
-											</span>
-											<span class="tooltip">
-												Are you ready to begin the journey and discover
-												something new?
-												<span class="tooltiptext">
-													旅を始めて、何か新しいことを発見する準備はできましたか？
-												</span>
-											</span>
-										</p>
-
-										<p
-											style="
-												font-size: 2rem;
-												text-align: left;
-												text-indent: 1rem;
-												margin: 2rem;
-												padding: 1vh;
-												text-align: right;
-											"
-										>
-											-- George
-										</p>
-									</div>
-
-									<div class="modal-footer">
-										<div class="audio-player">
-											<button class="audio-button" id="playPauseBtn">▶️</button>
-											<audio
-												id="playAudio"
-												src="assets/audio/audio0-1.mp3"
-												type="audio/mp3"
-											></audio>
-											<canvas id="waveform" class="waveform-canvas"></canvas>
-											<div class="time">
-												<span id="currentTime">0:00</span>
-												<span id="duration">0:00</span>
-											</div>
-											<div class="controls">
-												<label>🔊</label>
-												<input
-													type="range"
-													id="volume"
-													min="0"
-													max="1"
-													step="0.05"
-													value="1"
-												/>
-												<label>⏩</label>
-												<input
-													type="range"
-													id="speed"
-													min="0.5"
-													max="2"
-													step="0.05"
-													value="1"
-												/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
 						<!-- Audio for Intro Text -->
 
 						<audio id="audio1-1" class="playondemand">
@@ -340,6 +173,171 @@
 							<h6 style="margin: auto">Contact Us</h6>
 						</button>
 					</form>
+				</div>
+			</div>
+
+			<div class="items hidden-text" id="text1-1">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<div class="text-container">
+						<div class="modal-header">
+							<span
+								class="close clickable"
+								onClick="stopAudioPlayer(),ResetPlayAndShowWithNav('audio1-1', 'text1-1', 'play1-1', 'prev-portrait', 'next-portrait'), ResetPlayAndShowWithNav('audio1-1a', 'text1-1', 'play1-1a', 'prev-portrait', 'next-portrait')"
+								>&times;</span
+							>
+							<span
+								class="modal-play-left clickable"
+								onClick="PlaySoundWithControls('audio1-1a', 'play1-1a')"
+							></span>
+						</div>
+
+						<div class="modal-body">
+							<h1>Introduction</h1>
+
+							<p
+								style="
+									font-size: 2rem;
+									text-align: left;
+									text-indent: 1rem;
+									margin: 2rem;
+									padding: 1vh;
+									text-align: justify;
+								"
+							>
+								<span class="tooltip">
+									Spring is a season of change.
+									<span class="tooltiptext"> 春は変化の季節です。 </span>
+								</span>
+								<span class="tooltip">
+									From the dark cold days of winter, the weather gets warmer,
+									flowers bloom, and people start going outside and exploring.
+									<span class="tooltiptext">
+										冬の暗く寒い日々から、気候は暖かくなり、花が咲き、人々は外に出て探索を始めます。
+									</span>
+								</span>
+								<span class="tooltip">
+									It’s a time to head out and start new adventures.
+									<span class="tooltiptext">
+										外へ飛び出して、新しい冒険を始める時なのです。
+									</span>
+								</span>
+							</p>
+
+							<p
+								style="
+									font-size: 2rem;
+									text-align: left;
+									text-indent: 1rem;
+									margin: 2rem;
+									padding: 1vh;
+									text-align: justify;
+								"
+							>
+								<span class="tooltip">
+									In this issue, we also head out on a journey to learn.
+									<span class="tooltiptext">
+										今号では、私たちも学びの旅へと「出発」します。
+									</span>
+								</span>
+								<span class="tooltip">
+									We play with the names of different countries around the
+									world.
+									<span class="tooltiptext">
+										世界中のさまざまな国名を使って言葉遊びをします。
+									</span>
+								</span>
+								<span class="tooltip">
+									We visit Bali, one of the most famous tourist destinations
+									ever.
+									<span class="tooltiptext">
+										史上最も有名な観光地の一つであるバリ島を訪れます。
+									</span>
+								</span>
+								<span class="tooltip">
+									And we learn about animals that head out and make their own
+									long journeys.
+									<span class="tooltiptext">
+										引して、自ら遠い旅へと出発する動物たちについても学びます。
+									</span>
+								</span>
+							</p>
+
+							<p
+								style="
+									font-size: 2rem;
+									text-align: left;
+									text-indent: 1rem;
+									margin: 2rem;
+									padding: 1vh;
+									text-align: justify;
+								"
+							>
+								<span class="tooltip">
+									Each page in this magazine is a different way to head out and
+									learn about our world.
+									<span class="tooltiptext">
+										この雑誌のすべてのページが、外の世界へ「飛び出し」、私たちの世界について学ぶための異なる方法になっています。
+									</span>
+								</span>
+								<span class="tooltip">
+									Are you ready to begin the journey and discover something new?
+									<span class="tooltiptext">
+										旅を始めて、何か新しいことを発見する準備はできましたか？
+									</span>
+								</span>
+							</p>
+
+							<p
+								style="
+									font-size: 2rem;
+									text-align: left;
+									text-indent: 1rem;
+									margin: 2rem;
+									padding: 1vh;
+									text-align: right;
+								"
+							>
+								-- George
+							</p>
+						</div>
+
+						<div class="modal-footer">
+							<div class="audio-player">
+								<button class="audio-button" id="playPauseBtn">▶️</button>
+								<audio
+									id="playAudio"
+									src="assets/audio/audio0-1.mp3"
+									type="audio/mp3"
+								></audio>
+								<canvas id="waveform" class="waveform-canvas"></canvas>
+								<div class="time">
+									<span id="currentTime">0:00</span>
+									<span id="duration">0:00</span>
+								</div>
+								<div class="controls">
+									<label>🔊</label>
+									<input
+										type="range"
+										id="volume"
+										min="0"
+										max="1"
+										step="0.05"
+										value="1"
+									/>
+									<label>⏩</label>
+									<input
+										type="range"
+										id="speed"
+										min="0.5"
+										max="2"
+										step="0.05"
+										value="1"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
