@@ -46,20 +46,20 @@
 	--bg-color: #f8f8f8;
 	--bg-color-divs: #303030ae;
 	--bg-color-text-divs: #f8f8f8d8;
-	--box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015),
-		0 6px 20px 0 rgba(0, 0, 0, 0.015);
+	--box-shadow:
+		0 4px 8px 0 rgba(0, 0, 0, 0.015), 0 6px 20px 0 rgba(0, 0, 0, 0.015);
 	--text-color: #333333; /* Dark text for light mode */
 	--nav-bg: #e0e0e0;
 	--nav-button-background-color: rgba(255, 255, 255, 0.845);
-	--nav-bg-image: linear-gradient(203deg, #bcc0fe 0%, #010457 90%);
+	--nav-bg-image: linear-gradient(203deg, #d1febc 0%, #01570e 90%);
 	--nav-icon-color: #1a1201;
 	--link-text: #171418;
 	--link-hover-bg: #ffffffc2;
 	--cta-bg: var(--nav-icon-color);
 	--cta-text: var(--nav-bg); /* Light text for dark button in light mode */
-	--tooltip-color: rgb(2, 19, 144); /* Highlight the word */
+	--tooltip-color: rgb(4, 58, 1); /* Highlight the word */
 	--tooltip-text-color: #2f2e2e; /* Tooltip text color for light mode */
-	--tooltip-bg-color: #dddbdb; /* Tooltip background color for light mode */
+	--tooltip-bg-color: #e2e7d4; /* Tooltip background color for light mode */
 	--slide-button-bg: rgba(0, 0, 0, 0.3);
 	--slide-button-hover-bg: rgba(0, 0, 0, 0.6);
 	--slide-button-text: white;
@@ -88,18 +88,19 @@ html.dark {
 	--bg-color: #1a1a1a;
 	--bg-color-divs: #080707;
 	--bg-color-text-divs: #080707c8;
-	--box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.015),
+	--box-shadow:
+		0 4px 8px 0 rgba(255, 255, 255, 0.015),
 		0 6px 20px 0 rgba(255, 255, 255, 0.015);
 	--text-color: #e0e0e0; /* Light text for dark mode */
 	--nav-bg: #2c2c2c;
 	--nav-button-background-color: rgba(255, 255, 255, 0.308);
-	--nav-bg-image: linear-gradient(203deg, #0d0600 0%, #181568 90%);
+	--nav-bg-image: linear-gradient(203deg, #0d0600 0%, #1d6815 90%);
 	--nav-icon-color: #edebd3;
 	--link-text: #f6dbff;
 	--link-hover-bg: #000000ac;
 	--cta-bg: var(--nav-icon-color);
 	--cta-text: var(--nav-bg); /* Dark text for light button in dark mode */
-	--tooltip-color: rgb(211, 226, 247); /* Highlight the word */
+	--tooltip-color: rgb(216, 247, 211); /* Highlight the word */
 	--tooltip-text-color: #fff; /* Tooltip text color for dark mode */
 	--tooltip-bg-color: #29282fef; /* Tooltip background color for dark mode */
 	--slide-button-bg: rgba(255, 255, 255, 0.2);
@@ -130,11 +131,23 @@ html.dark {
 html,
 body {
 	height: 100%;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family:
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		"Segoe UI",
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		"Open Sans",
+		"Helvetica Neue",
+		sans-serif;
 	background-color: var(--bg-color-divs);
 	color: var(--text-color); /* Default text color applies */
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 
 	scrollbar-width: thin;
 	scrollbar-color: rgba(255, 255, 255, 0.085) transparent;
@@ -169,8 +182,14 @@ body {
 	padding-bottom: 20px;
 	gap: 12px;
 	z-index: 10;
-	transition: background-color 0.3s ease, width 0.3s ease, height 0.3s ease,
-		top 0.3s ease, right 0.3s ease, left 0.3s ease, bottom 0.3s ease,
+	transition:
+		background-color 0.3s ease,
+		width 0.3s ease,
+		height 0.3s ease,
+		top 0.3s ease,
+		right 0.3s ease,
+		left 0.3s ease,
+		bottom 0.3s ease,
 		flex-direction 0s;
 	box-shadow: 0vw 0.01vw 0.5vw rgba(0, 0, 0, 0.2);
 }
@@ -185,7 +204,9 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: background-color 0.2s ease, color 0.3s ease;
+	transition:
+		background-color 0.2s ease,
+		color 0.3s ease;
 	border: none;
 	background: none;
 	cursor: pointer;
@@ -218,7 +239,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	transition: padding-top 0.3s ease, padding-right 0.3s ease;
+	transition:
+		padding-top 0.3s ease,
+		padding-right 0.3s ease;
 	padding-right: 0px;
 	padding-left: 0px;
 	padding-top: 0px;
@@ -262,7 +285,9 @@ body {
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	position: relative;
 	z-index: 2;
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 #hero .cta-button:hover {
 	background-color: var(--hero-cta-hover-bg);
@@ -304,7 +329,10 @@ body {
 	text-decoration: none;
 	border-radius: 5px;
 	font-weight: bold;
-	transition: background-color 0.3s ease, color 0.3s ease, opacity 0.2s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		opacity 0.2s ease;
 }
 
 .cta-button:hover {
@@ -343,7 +371,10 @@ body {
 	cursor: pointer;
 	border-radius: 5px;
 	z-index: 5; /* Above slides, below nav */
-	transition: background-color 0.3s ease, color 0.3s ease, right 0.3s ease,
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		right 0.3s ease,
 		left 0.3s ease;
 }
 #prev-slide:hover,
@@ -374,7 +405,10 @@ body {
 	cursor: pointer;
 	border-radius: 5px;
 	z-index: 5; /* Above slides, below nav */
-	transition: background-color 0.3s ease, color 0.3s ease, right 0.3s ease,
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease,
+		right 0.3s ease,
 		left 0.3s ease;
 }
 #prev-portrait:hover,
@@ -396,7 +430,7 @@ body {
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	z-index: 1000;
+	z-index: 1;
 	/* display initial state set by JS */
 }
 
@@ -445,6 +479,7 @@ body {
 	grid-template-columns: 65px 0vw 81vw 10vw; /* sidebar | gap | content | sidebar */
 	grid-template-areas: "sidebar-left gap-left content-center sidebar-right";
 	grid-gap: 0vw; /* Explicitly setting gap to 0 */
+	z-index: 1; /* Base layer for content */
 }
 
 /* --- Grid Areas within #container --- */
@@ -631,7 +666,9 @@ small {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	transition: background-color 0.2s, transform 0.2s; /* Added transform */
+	transition:
+		background-color 0.2s,
+		transform 0.2s; /* Added transform */
 }
 
 .menu-button:hover {
@@ -656,7 +693,9 @@ small {
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	transition: background-color 0.2s, transform 0.2s; /* Added transform */
+	transition:
+		background-color 0.2s,
+		transform 0.2s; /* Added transform */
 }
 
 .menu-button-small:hover {
@@ -672,7 +711,9 @@ small {
 .image-button-base {
 	box-shadow: var(--box-shadow);
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s; /* Added transform */
+	transition:
+		background-color 0.2s,
+		transform 0.2s; /* Added transform */
 	cursor: pointer; /* Indicate interactivity */
 }
 
@@ -685,7 +726,9 @@ small {
 	/* extends .image-button-base */
 	box-shadow: var(--box-shadow);
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 	border-radius: 5vw; /* Large radius for circle */
 	max-height: 3vw;
@@ -703,7 +746,9 @@ small {
 	/* extends .image-button-base */
 	box-shadow: 0vw 0.01vw 0.05vw rgba(0, 0, 0, 0.5);
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 	border-radius: 3vw; /* Large radius for circle */
 	max-height: 1.5vw;
@@ -721,7 +766,9 @@ small {
 	/* extends .image-button-base */
 	box-shadow: 0vw 0.01vw 0.05vw rgba(0, 0, 0, 0.5);
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 	border-radius: 0vw;
 	max-height: 5.7vw;
@@ -739,7 +786,9 @@ small {
 	/* extends .image-button-base */
 	box-shadow: 0vw 0.01vw 0.05vw rgba(0, 0, 0, 0.5);
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 	border-radius: 0vw;
 	max-height: 10.5vw;
@@ -757,7 +806,9 @@ small {
 	/* extends .image-button-base */
 	box-shadow: 0vw 0.1vw 0.5vw rgba(0, 0, 0, 0.5); /* Slightly different shadow */
 	object-fit: contain;
-	transition: background-color 0.2s, transform 0.2s;
+	transition:
+		background-color 0.2s,
+		transform 0.2s;
 	cursor: pointer;
 	border-radius: 0.1vw;
 	height: 2.7vw;
@@ -936,7 +987,9 @@ audio controls {
 	border-radius: 0.5vw; /* Rounded corners for controls */
 	box-shadow: var(--box-shadow); /* Shadow for depth */
 	padding: 0.5vw; /* Padding for aesthetics */
-	transition: background-color 0.3s ease, color 0.3s ease;
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 /* --- Media Queries --- */

@@ -120,24 +120,18 @@
 											"
 										>
 											<span class="tooltip">
-												As winter continues, we hope this magazine gives you
-												moments to pause, think, and enjoy reading.
+												Spring is a great time to head out and try something
+												new!
 												<span class="tooltiptext">
-													冬が続く中で、この雑誌が少し立ち止まって考えたり、読むことを楽しんだりする時間になればうれしいです。
+													春は外に飛び出して、何か新しいことに挑戦するのに絶好の季節です！
 												</span>
 											</span>
 											<span class="tooltip">
-												Maybe you solved the mystery, wrote your own haiku,
-												visited the museum in your imagination, or learned
-												something new about staying safe online.
+												In this issue of Impress, we learned about amazing
+												animal journeys, explored Bali, and played with words
+												from around the world.
 												<span class="tooltiptext">
-													ミステリーを解いたり、俳句を書いたり、想像の中で博物館に行ったり、インターネットで安全に過ごす方法を学んだかもしれません。
-												</span>
-											</span>
-											<span class="tooltip">
-												We hope this magazine supported your English learning.
-												<span class="tooltiptext">
-													この雑誌が、英語の勉強の助けになったことを願っています。
+													今号の『Impress』では、動物たちの驚くべき旅について学び、バリ島を探索し、世界中の言葉を使った言葉遊びを楽しみました。
 												</span>
 											</span>
 										</p>
@@ -153,31 +147,16 @@
 											"
 										>
 											<span class="tooltip">
-												As always, we encourage you to try our puzzles and
-												challenges.
+												But our learning adventure doesn’t have to stop here.
 												<span class="tooltiptext">
-													いつものように、パズルやチャレンジにもぜひ挑戦してみてください。
+													しかし、私たちの学びの冒険はここで終わる必要はありません。
 												</span>
 											</span>
 											<span class="tooltip">
-												You can find the worksheets linked in our app or on our
-												materials website.
+												Maybe your next journey can be to a new place, a new
+												hobby, or even a new English word!
 												<span class="tooltiptext">
-													ワークシートは、アプリや教材用ウェブサイトのリンクから見ることができます。
-												</span>
-											</span>
-											<span class="tooltip">
-												If you have any ideas, suggestions, questions, or
-												comments, please use the contact form in the app or on
-												our website.
-												<span class="tooltiptext">
-													アイデアや質問、感想があれば、アプリやウェブサイトのお問い合わせフォームから送ってください。
-												</span>
-											</span>
-											<span class="tooltip">
-												We’re always happy to hear from you.
-												<span class="tooltiptext">
-													みなさんからのメッセージを、いつも楽しみにしています。
+													あなたの次の旅は、新しい場所への旅行、新しい趣味、あるいは新しい英単語との出会いかもしれません！
 												</span>
 											</span>
 										</p>
@@ -193,24 +172,188 @@
 											"
 										>
 											<span class="tooltip">
-												When the days are cold or quiet, reading can be a kind
-												of warmth.
+												So open the door, step outside, and see where spring
+												takes you.
 												<span class="tooltiptext">
-													寒くて静かな日には、読書が心をあたたかくしてくれることがあります。
+													さあ、扉を開けて一歩外へ踏み出し、春があなたをどこへ連れて行ってくれるか見てみましょう。
 												</span>
 											</span>
 											<span class="tooltip">
-												We hope you found something here that stayed with you,
-												made you curious, or helped you see things in a new way.
+												Happy exploring!
+												<span class="tooltiptext"> 楽しい探索を！ </span>
+											</span>
+										</p>
+									</div>
+									<div class="modal-footer">
+										<div class="audio-player">
+											<button class="audio-button" id="playPauseBtn">▶️</button>
+											<audio
+												id="playAudio"
+												src="assets/audio/audio7-1.mp3"
+												type="audio/mp3"
+											></audio>
+											<canvas id="waveform" class="waveform-canvas"></canvas>
+											<div class="time">
+												<span id="currentTime">0:00</span>
+												<span id="duration">0:00</span>
+											</div>
+											<div class="controls">
+												<label>🔊</label>
+												<input
+													type="range"
+													id="volume"
+													min="0"
+													max="1"
+													step="0.05"
+													value="1"
+												/>
+												<label>⏩</label>
+												<input
+													type="range"
+													id="speed"
+													min="0.5"
+													max="2"
+													step="0.05"
+													value="1"
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="items hidden-text" id="text1-2">
+							<!-- Modal content -->
+							<div class="modal-content">
+								<div class="text-container">
+									<div class="modal-header">
+										<span
+											class="close clickable"
+											onClick="stopAudioPlayer(),ResetPlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2', 'prev-portrait', 'next-portrait'), ResetPlayAndShowWithNav('audio1-2a', 'text1-2', 'play1-2a', 'prev-portrait', 'next-portrait')"
+											>&times;</span
+										>
+									</div>
+
+									<div class="modal-body">
+										<h1>This Issue’s Reading Tasks</h1>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip">
+												<strong>Page 1:</strong> Finish the puzzles!
 												<span class="tooltiptext">
-													心に残ったことや、もっと知りたいと思ったこと、新しい見方が見つかっていればうれしいです。
+													パズルを完成させよう！
 												</span>
 											</span>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
 											<span class="tooltip">
-												Thanks for reading Impress, and until next time, stay
-												warm, stay thoughtful, and keep learning.
+												<strong>Page 2:</strong> What does each country mean in
+												the story?
 												<span class="tooltiptext">
-													『Impress』を読んでくれて、ありがとうございます。次回まで、あたたかく過ごし、考えることを大切にして、学び続けてください。
+													2ページ：ストーリーの中で、それぞれの国にはどんな意味がありますか？
+												</span>
+											</span>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip">
+												<strong>Page 3:</strong> 1) What do all the bold words
+												mean?
+												<span class="tooltiptext">
+													3ページ：1) 太字の単語はすべてどういう意味ですか？
+												</span>
+											</span>
+											<br />
+											<span class="tooltip">
+												2) Can you make a short summary using the bold words?
+												<span class="tooltiptext">
+													2) 太字の単語を使って短い要約を作ることができますか？
+												</span>
+											</span>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip">
+												<strong>Page 5:</strong> Why is the monarch butterfly
+												amazing?
+												<span class="tooltiptext">
+													5ページ：オオカバマダラ（渡りチョウ）はなぜ素晴らしいのでしょうか？
+												</span>
+											</span>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip">
+												<strong>Page 6:</strong> Which of the three animals is
+												the most amazing? Why?
+												<span class="tooltiptext">
+													6ページ：3匹の動物のうち、最も素晴らしいのはどれですか？その理由は何ですか？
+												</span>
+											</span>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip">
+												<strong>Back Cover:</strong> What can you do at the
+												Impress website?
+												<span class="tooltiptext">
+													裏表紙：Impressのウェブサイトでは何ができますか？
 												</span>
 											</span>
 										</p>
@@ -260,6 +403,10 @@
 							<!-- empty audio, just used to open the modal -->
 							<source src="assets/audio/audio7-0.mp3" type="audio/mp3" />
 						</audio>
+						<audio id="audio1-2" class="playondemand">
+							<!-- empty audio, just used to open the modal -->
+							<source src="assets/audio/audio7-0.mp3" type="audio/mp3" />
+						</audio>
 
 						<audio
 							id="audio1-1a"
@@ -288,8 +435,39 @@
 						<h6 style="margin: auto">Closing</h6>
 					</button>
 
+					<button
+						class="center-items right-nav-buttons clickable"
+						type="button"
+						onClick="PlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2', 'prev-portrait', 'next-portrait')"
+					>
+						<img
+							id="play1-2"
+							class="audio-button-image clickable"
+							src="/assets/nav-images/play-g79150a13d_1280.png"
+						/>
+						<h6 style="margin: auto">Reading Tasks</h6>
+					</button>
+
 					<form
-						action="https://sites.google.com/isesaki-school.ed.jp/impress-winter-2026"
+						action="https://drive.google.com/file/d/1mp0y1gj5MZl2g5ybBYTkvhtXSJVJxLfN/view"
+						method="get"
+						target="_blank"
+					>
+						<button
+							class="center-items right-nav-buttons clickable"
+							type="submit"
+						>
+							<img
+								id="play1-2"
+								class="audio-button-image clickable"
+								src="/assets/nav-images/link.png"
+							/>
+							<h6 style="margin: auto">Reading Task Answers</h6>
+						</button>
+					</form>
+
+					<form
+						action="https://in.isesaki.in/impress-spring-2026"
 						method="get"
 						target="_blank"
 					>
