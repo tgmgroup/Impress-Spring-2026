@@ -1,346 +1,186 @@
-// var audioElements = document.querySelectorAll('audio');
+// Centralized configurations to make updating assets incredibly easy
+const ASSETS = {
+	playImg: "./assets/nav-images/play-g79150a13d_1280.png",
+	stopImg: "./assets/nav-images/stop-g55029e04a_1280.png",
+	hoverSound: "/assets/audio/computerwav-14702A.mp3",
+};
 
-function PlayAndShow(audioSound, textDiv, audioImage) {
-	var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-
-	/*audioElements.forEach(function(audio) {
-        if (audio.id === audioSound) {
-            // Play the selected audio
-            audio.play();
-        } else {
-            // Mute all other audio elements
-            audio.volume = 0;
-            // Pause other audio elements (optional)
-            audio.pause();
-        }
-    });*/
-
-	if (myAudio.paused) {
-		//myAudio.play();
-		myText.style.display = "flex";
-		myButton.src = "./assets/nav-images/stop-g55029e04a_1280.png";
-		// myAudio.onended = ResetPlayAndShow(myAudio, myText, myButton);
-		myAudio.addEventListener("ended", function () {
-			myAudio.pause();
-			myAudio.currentTime = 0;
-			myText.style.display = "none";
-			myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-		});
-	} else {
-		myAudio.pause();
-		myAudio.currentTime = 0;
-		myText.style.display = "none";
-		myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	}
-}
-
-function ResetPlayAndShow(audioSound, textDiv, audioImage) {
-	// Pause all other audio elements
-	var allAudioElements = document.querySelectorAll("audio");
-	allAudioElements.forEach(function (audio) {
-		if (audio.id !== audioSound) {
+/**
+ * Core Helper: Pauses all audio tags except a specific one,
+ * resetting play/stop icons across the page automatically.
+ */
+function resetOtherAudio(exceptionId = null) {
+	document.querySelectorAll("audio").forEach((audio) => {
+		if (audio.id !== exceptionId) {
 			audio.pause();
 			audio.currentTime = 0;
 		}
 	});
 
-	var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-
-	myAudio.pause();
-	myAudio.currentTime = 0;
-	myAudio.style.display = "none"; // Hide the audio controls
-	myText.style.display = "none";
-	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	stopAllAudio();
-}
-
-function PlayAndShowWithNav(
-	audioSound,
-	textDiv,
-	audioImage,
-	navLeft,
-	navRight,
-) {
-	var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-	var navLeftButton = document.getElementById(navLeft);
-	var navRightButton = document.getElementById(navRight);
-
-	/*audioElements.forEach(function(audio) {
-        if (audio.id === audioSound) {
-            // Play the selected audio
-            audio.play();
-        } else {
-            // Mute all other audio elements
-            audio.volume = 0;
-            // Pause other audio elements (optional)
-            audio.pause();
-        }
-    });*/
-
-	if (myAudio.paused) {
-		//myAudio.play();
-		myText.style.display = "flex";
-		myButton.src = "./assets/nav-images/stop-g55029e04a_1280.png";
-		// myAudio.onended = ResetPlayAndShow(myAudio, myText, myButton);
-		myAudio.addEventListener("ended", function () {
-			myAudio.pause();
-			myAudio.currentTime = 0;
-			myText.style.display = "none";
-			myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-		});
-	} else {
-		myAudio.pause();
-		myAudio.currentTime = 0;
-		myText.style.display = "none";
-		myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	}
-
-	navLeftButton.style.visibility = "hidden";
-	navRightButton.style.visibility = "hidden";
-}
-
-// ResetPlayAndShowWithNav function to reset audio, hide elements, and hide slide navigation
-function ResetPlayAndShowWithNav(
-	audioSound,
-	textDiv,
-	audioImage,
-	navLeft,
-	navRight,
-) {
-	// Pause all other audio elements
-	var allAudioElements = document.querySelectorAll("audio");
-	allAudioElements.forEach(function (audio) {
-		if (audio.id !== audioSound) {
-			audio.pause();
-			audio.currentTime = 0;
-		}
-	});
-
-	var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-	var navLeftButton = document.getElementById(navLeft);
-	var navRightButton = document.getElementById(navRight);
-
-	myAudio.pause();
-	myAudio.currentTime = 0;
-	myAudio.style.display = "none"; // Hide the audio controls
-	myText.style.display = "none";
-	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	navLeftButton.style.visibility = "visible";
-	navRightButton.style.visibility = "visible";
-	stopAllAudio();
-}
-
-function PlaySound(audioSound, audioImage) {
-	// Pause all other audio elements
-	var allAudioElements = document.querySelectorAll("audio");
-	allAudioElements.forEach(function (audio) {
-		if (audio.id !== audioSound) {
-			audio.pause();
-			audio.currentTime = 0;
-		}
-	});
-
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-
-	if (myAudio.paused) {
-		myAudio.play();
-		myButton.src = "./assets/nav-images/stop-g55029e04a_1280.png";
-
-		myAudio.addEventListener("ended", function () {
-			myAudio.pause();
-			myAudio.currentTime = 0;
-			myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-		});
-	} else {
-		myAudio.pause();
-		myAudio.currentTime = 0;
-		myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	}
-}
-
-function PlaySoundWithControls(audioSoundId, audioImageId) {
-	// Define paths to your images for clarity and easier updates
-	const playImageSrc = "./assets/nav-images/play-g79150a13d_1280.png";
-	const stopImageSrc = "./assets/nav-images/stop-g55029e04a_1280.png"; // Assuming this is your stop/pause icon
-
-	var myAudio = document.getElementById(audioSoundId);
-	var myButton = document.getElementById(audioImageId);
-
-	if (!myAudio) {
-		console.error("Audio element not found:", audioSoundId);
-		return;
-	}
-	// It's good practice to check for myButton too, though the original didn't explicitly
-	if (!myButton) {
-		console.warn("Audio button image element not found:", audioImageId);
-		// If the button isn't found, the rest of the audio logic can proceed,
-		// but image swapping will fail silently or error if not checked.
-	}
-
-	// Pause all other audio elements, hide their controls, and reset their states
-	var allAudioElements = document.querySelectorAll("audio");
-	allAudioElements.forEach(function (audio) {
-		if (audio.id !== audioSoundId) {
-			if (!audio.paused) {
-				// If another audio was actually playing
-				audio.pause();
-				audio.currentTime = 0;
-				// If you have a way to find the button associated with this 'audio' element,
-				// you would reset its image source to playImageSrc here.
-				// For example, if its button ID was audio.id.replace('audio', 'play'):
-				// var otherButton = document.getElementById(audio.id.replace('audio', 'play'));
-				// if (otherButton) otherButton.src = playImageSrc;
+	// Reset button icons if they are currently displaying the stop image
+	document
+		.querySelectorAll(".thumbnail, .audio-btn, .audio-button-image")
+		.forEach((btn) => {
+			if (btn.src && btn.src.includes("stop-")) {
+				btn.src = ASSETS.playImg;
 			}
-			audio.style.display = "none"; // Hide controls for other audio elements
-		}
-	});
+		});
+}
 
+/**
+ * Unified Master Controller for Play/Pause and UI handling
+ * Combines: PlayAndShow, PlayAndShowWithNav, PlaySound, and PlayAndShowGallery
+ */
+function handleAudioToggle(options = {}) {
+	const {
+		audioId,
+		imageId,
+		textId = null,
+		navLeftId = null,
+		navRightId = null,
+		showNativeControls = false,
+		hideImageOnReset = false,
+	} = options;
+
+	const myAudio = document.getElementById(audioId);
+	const myButton = document.getElementById(imageId);
+	const myText = textId ? document.getElementById(textId) : null;
+	const navLeft = navLeftId ? document.getElementById(navLeftId) : null;
+	const navRight = navRightId ? document.getElementById(navRightId) : null;
+
+	if (!myAudio) return console.error("Audio element not found:", audioId);
+
+	// If it's paused, let's play it
 	if (myAudio.paused) {
-		myAudio.style.display = "block"; // Or 'inline-block' depending on your layout needs
+		resetOtherAudio(audioId); // Mute everything else first
+
 		myAudio.play();
+		if (myAudio.tagName === "AUDIO" && showNativeControls)
+			myAudio.style.display = "block";
 		if (myButton) {
-			myButton.src = stopImageSrc;
+			myButton.style.visibility = "visible";
+			myButton.src = ASSETS.stopImg;
 		}
+		if (myText) myText.style.display = "flex";
+		if (navLeft) navLeft.style.visibility = "hidden";
+		if (navRight) navRight.style.visibility = "hidden";
 
-		// Using onended to prevent multiple listeners on the same element
-		myAudio.onended = function () {
-			// myAudio.pause(); // Audio is already paused when 'ended' fires
-			myAudio.currentTime = 0;
-			if (myButton) {
-				myButton.src = playImageSrc;
-			}
-			myAudio.style.display = "none"; // Hide controls when audio finishes
+		// Memory-safe hook: Replaces any previous inline hook cleanly
+		myAudio.onended = () => {
+			handleAudioReset(options);
 		};
 	} else {
-		myAudio.pause();
-		// myAudio.currentTime = 0; // As per your original logic, reset time on manual pause, if commented out, does not reset time and will continue from last position
-		if (myButton) {
-			myButton.src = playImageSrc;
-		}
-		myAudio.style.display = "none"; // Hide controls when manually paused
+		// If it's already playing, pause and reset it manually
+		handleAudioReset(options);
 	}
-
-	// Optional: If you want to hide the player when explicitly paused before it ends
-	// myAudio.style.display = "none";
-	// If you hide on manual pause, you might not want to reset currentTime immediately
-	// unless that's the desired behavior. For continuous play/pause, don't reset here.
-	// myAudio.currentTime = 0; // Consider if you want this on manual pause
 }
 
-function PlayQuickSound(audioSound) {
-	var myAudio = document.getElementById(audioSound);
+/**
+ * Unified Reset Mechanism
+ * Combines: ResetPlayAndShow, ResetPlayAndShowWithNav, ResetPlayAndShowGallery
+ */
+function handleAudioReset(options = {}) {
+	const { audioId, imageId, textId, navLeftId, navRightId, hideImageOnReset } =
+		options;
 
-	if (myAudio.paused) {
-		myAudio.play();
+	const myAudio = document.getElementById(audioId);
+	const myButton = document.getElementById(imageId);
+	const myText = textId ? document.getElementById(textId) : null;
+	const navLeft = navLeftId ? document.getElementById(navLeftId) : null;
+	const navRight = navRightId ? document.getElementById(navRightId) : null;
 
-		myAudio.addEventListener("ended", function () {
-			myAudio.pause();
-			myAudio.currentTime = 0;
-		});
-	} else {
+	if (myAudio) {
 		myAudio.pause();
 		myAudio.currentTime = 0;
+		myAudio.style.display = "none";
 	}
-}
-
-function HideDiv(textDiv) {
-	var myText = document.getElementById(textDiv);
-	myText.style.display = "none";
-	stopAllAudio();
-}
-
-function PlayAndShowGallery(audioSound, textDiv, audioImage) {
-	//var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
-
-	myButton.style.visibility = "visible";
-
-	myButton.src = "./assets/nav-images/stop-g55029e04a_1280.png";
-	if (myAudio.paused) {
-		myAudio.play();
-		//myText.style.display = "flex";
-		myButton.src = "./assets/nav-images/stop-g55029e04a_1280.png";
-		// myAudio.onended = ResetPlayAndShow(myAudio, myText, myButton);
-		myAudio.addEventListener("ended", function () {
-			myAudio.pause();
-			myAudio.currentTime = 0;
-			//myText.style.display = "none";
-			myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-		});
-	} else {
-		myAudio.pause();
-		myAudio.currentTime = 0;
-		//myText.style.display = "none";
-		myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
+	if (myText) myText.style.display = "none";
+	if (myButton) {
+		myButton.src = ASSETS.playImg;
+		if (hideImageOnReset) myButton.style.visibility = "hidden";
 	}
+	if (navLeft) navLeft.style.visibility = "visible";
+	if (navRight) navRight.style.visibility = "visible";
 }
 
-function ResetPlayAndShowGallery(audioSound, textDiv, audioImage) {
-	//var myText = document.getElementById(textDiv);
-	var myAudio = document.getElementById(audioSound);
-	var myButton = document.getElementById(audioImage);
+// --- BACKWARDS COMPATIBILITY WRAPPERS ---
+// These wrap your old function names so you don't have to rewrite your HTML onclick attributes!
 
-	myAudio.pause();
-	myAudio.currentTime = 0;
-	//myText.style.display = "none";
-	myButton.style.visibility = "hidden";
-	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
-	stopAllAudio();
+function PlayAndShow(audio, text, img) {
+	handleAudioToggle({ audioId: audio, textId: text, imageId: img });
 }
-
-function playHoverSoundOnClass(className) {
-	const elements = document.getElementsByClassName(className);
-	const hoverSound = new Audio("/assets/audio/computerwav-14702A.mp3");
-
-	Array.from(elements).forEach((element) => {
-		element.addEventListener("mouseover", () => {
-			hoverSound.play();
-		});
+function ResetPlayAndShow(audio, text, img) {
+	handleAudioReset({ audioId: audio, textId: text, imageId: img });
+}
+function PlayAndShowWithNav(audio, text, img, left, right) {
+	handleAudioToggle({
+		audioId: audio,
+		textId: text,
+		imageId: img,
+		navLeftId: left,
+		navRightId: right,
 	});
-
-	// Optional: Pause the audio when the button is not hovered (optional)
-	/* audioButton.addEventListener("mouseout", function() {
-        audio.pause();
-        audio.currentTime = 0; // Reset audio playback position
-    });*/
-
-	//Old Method
-	/*function playClickSoundOnClass(className) {
-        const elements = document.getElementsByClassName(className);
-        const hoverSound = document.getElementById("click-sound");
-
-        Array.from(elements).forEach(element => {
-            element.addEventListener("click", () => {
-                hoverSound.play();
-            });
-        });
-    }*/
+}
+function ResetPlayAndShowWithNav(audio, text, img, left, right) {
+	handleAudioReset({
+		audioId: audio,
+		textId: text,
+		imageId: img,
+		navLeftId: left,
+		navRightId: right,
+	});
+}
+function PlaySound(audio, img) {
+	handleAudioToggle({ audioId: audio, imageId: img });
+}
+function PlaySoundWithControls(audio, img) {
+	handleAudioToggle({ audioId: audio, imageId: img, showNativeControls: true });
+}
+function PlayAndShowGallery(audio, text, img) {
+	handleAudioToggle({ audioId: audio, imageId: img });
+}
+function ResetPlayAndShowGallery(audio, text, img) {
+	handleAudioReset({ audioId: audio, imageId: img, hideImageOnReset: true });
+}
+function PlayQuickSound(audio) {
+	handleAudioToggle({ audioId: audio });
+}
+function HideDiv(textDiv) {
+	const el = document.getElementById(textDiv);
+	if (el) el.style.display = "none";
+	resetOtherAudio();
+}
+function stopAllAudio() {
+	resetOtherAudio();
 }
 
-function toggleFullScreen() {
-	var doc = window.document;
-	var docEl = doc.documentElement;
+// --- OPTIMIZED EVENT DRIVERS ---
 
-	var requestFullScreen =
+// Audio Hovers: Single Audio instance reused to prevent system cluttering
+function playHoverSoundOnClass(className) {
+	const hoverSound = new Audio(ASSETS.hoverSound);
+	document.addEventListener("mouseover", (e) => {
+		if (e.target.classList.contains(className)) {
+			hoverSound.currentTime = 0;
+			hoverSound.play().catch(() => {}); // Catches browser autoplay block policies safely
+		}
+	});
+}
+
+// Fullscreen Router logic
+function toggleFullScreen() {
+	const doc = window.document;
+	const docEl = doc.documentElement;
+	const request =
 		docEl.requestFullscreen ||
 		docEl.mozRequestFullScreen ||
 		docEl.webkitRequestFullScreen ||
 		docEl.msRequestFullscreen;
-	var cancelFullScreen =
+	const cancel =
 		doc.exitFullscreen ||
 		doc.mozCancelFullScreen ||
 		doc.webkitExitFullscreen ||
-		doc.msExitFullscreen;
+		doc.msFullscreen;
 
 	if (
 		!doc.fullscreenElement &&
@@ -348,113 +188,62 @@ function toggleFullScreen() {
 		!doc.webkitFullscreenElement &&
 		!doc.msFullscreenElement
 	) {
-		requestFullScreen.call(docEl);
+		if (request) request.call(docEl);
 	} else {
-		cancelFullScreen.call(doc);
+		if (cancel) cancel.call(doc);
 	}
 }
 
-// Call a function to add hover and click sounds to buttons, passing the class name "clickable"
-document.addEventListener("DOMContentLoaded", function () {
+// Setup Event Listeners globally via Event Delegation (massive performance save)
+document.addEventListener("DOMContentLoaded", () => {
 	playHoverSoundOnClass("clickable");
-	// playClickSoundOnClass("clickable");
 
-	// Use JavaScript to fetch and insert the menu HTML into the placeholder div.
-	/*fetch('menu.html')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById('menu-placeholder').innerHTML = data;
-    });*/
-});
+	// Unified Fullscreen Click router for Links & Buttons
+	document.addEventListener("click", (e) => {
+		const targetLink = e.target.closest(".fullscreenLink");
+		const targetBtn = e.target.closest(".fullscreenButton");
 
-// Get all elements with the "fullscreenLink" class
-const fullscreenLinks = document.querySelectorAll(".fullscreenLink");
+		if (!targetLink && !targetBtn) return;
+		e.preventDefault();
 
-fullscreenLinks.forEach((link) => {
-	link.addEventListener("click", (e) => {
-		e.preventDefault(); // Prevent the default link behavior
-
-		// Get the URL from the href attribute of the clicked link
-		const urlToOpen = link.getAttribute("href");
-
-		// Check if the current page is in fullscreen mode
-		if (document.fullscreenElement === null) {
-			// If not in fullscreen, open the link normally
-			window.location.href = urlToOpen;
-		} else {
-			// If in fullscreen, open the link in fullscreen
-			const fullscreenElement = document.documentElement;
-
-			fullscreenElement
-				.requestFullscreen()
-				.then(() => {
-					window.location.href = urlToOpen;
-				})
-				.catch((error) => {
-					console.error("Error entering fullscreen mode:", error);
-				});
-		}
-	});
-});
-
-// Get all elements with the "fullscreenButton" class
-const fullscreenButtons = document.querySelectorAll(".fullscreenButton");
-
-fullscreenButtons.forEach((button) => {
-	button.addEventListener("click", () => {
-		// Get the URL from the data-url attribute of the clicked button
-		// Old insecure method -- const urlToOpen = button.getAttribute("data-url");
-
-		// New secure method -- using URL constructor to validate and parse the URL
-		// Get the URL from the data-url attribute of the clicked button
-		let urlToOpen = button.getAttribute("data-url");
+		let urlToOpen = targetLink
+			? targetLink.getAttribute("href")
+			: targetBtn.getAttribute("data-url");
 
 		try {
-			const parsedUrl = new URL(urlToOpen, window.location.origin); // Validate and parse the URL
-			urlToOpen = parsedUrl.href; // Use the sanitized URL
+			const parsedUrl = new URL(urlToOpen, window.location.origin);
+			urlToOpen = parsedUrl.href;
 		} catch (error) {
-			console.error("Invalid URL in data-url attribute:", urlToOpen);
-			return; // Exit the function if the URL is invalid
+			return console.error("Invalid Target URL Validation Failed:", urlToOpen);
 		}
 
-		if (document.fullscreenElement === null) {
+		if (!document.fullscreenElement) {
 			window.location.href = urlToOpen;
 		} else {
-			const fullscreenElement = document.documentElement;
-
-			fullscreenElement
+			document.documentElement
 				.requestFullscreen()
 				.then(() => {
 					window.location.href = urlToOpen;
 				})
-				.catch((error) => {
-					console.error("Error entering fullscreen mode:", error);
-				});
+				.catch((err) =>
+					console.error("Error setting full-screen redirection:", err),
+				);
 		}
 	});
 });
 
-/* Track Mouse for Tooltip Positioning */
+// Tooltip positioning track optimization (Using RequestAnimationFrame for buttery smoothness)
+let ticking = false;
 document.addEventListener("mousemove", (e) => {
-	const tooltip = document.querySelector(".tooltip:hover .tooltiptext");
-	if (!tooltip) return;
-
-	tooltip.style.left = e.clientX + "px";
-	tooltip.style.top = e.clientY + "px";
+	if (!ticking) {
+		window.requestAnimationFrame(() => {
+			const tooltip = document.querySelector(".tooltip:hover .tooltiptext");
+			if (tooltip) {
+				tooltip.style.left = `${e.clientX}px`;
+				tooltip.style.top = `${e.clientY}px`;
+			}
+			ticking = false;
+		});
+		ticking = true;
+	}
 });
-
-function stopAllAudio() {
-	const allAudio = document.querySelectorAll("audio");
-	allAudio.forEach((audio) => {
-		audio.pause();
-		audio.currentTime = 0;
-	});
-
-	// Explicit check targeting only the genuine stop image file name
-	const allButtons = document.querySelectorAll(".thumbnail, .audio-btn");
-	allButtons.forEach((btn) => {
-		if (btn.src.includes("stop-g55029e04a_1280.png")) {
-			btn.src = "./assets/nav-images/play-g79150a13d_1280.png";
-		}
-	});
-}

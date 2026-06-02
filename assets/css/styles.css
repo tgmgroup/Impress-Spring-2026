@@ -1038,7 +1038,7 @@ audio {
 	#container {
 		/* Adjust the grid layout for mobile */
 		grid-template-columns: 1fr; /* Single column for vertical layout */
-		grid-template-rows: 60px auto auto auto; /* Define rows based on content */
+		grid-template-rows: 60px auto auto auto auto; /* Define rows based on content */
 		grid-template-areas:
 			"sidebar-left"
 			"gap-left"
