@@ -63,7 +63,7 @@ function PlayAndShowWithNav(
 	textDiv,
 	audioImage,
 	navLeft,
-	navRight
+	navRight,
 ) {
 	var myText = document.getElementById(textDiv);
 	var myAudio = document.getElementById(audioSound);
@@ -111,7 +111,7 @@ function ResetPlayAndShowWithNav(
 	textDiv,
 	audioImage,
 	navLeft,
-	navRight
+	navRight,
 ) {
 	// Pause all other audio elements
 	var allAudioElements = document.querySelectorAll("audio");
@@ -434,7 +434,6 @@ fullscreenButtons.forEach((button) => {
 	});
 });
 
-
 /* Track Mouse for Tooltip Positioning */
 document.addEventListener("mousemove", (e) => {
 	const tooltip = document.querySelector(".tooltip:hover .tooltiptext");
@@ -444,19 +443,18 @@ document.addEventListener("mousemove", (e) => {
 	tooltip.style.top = e.clientY + "px";
 });
 
-
 function stopAllAudio() {
-    const allAudio = document.querySelectorAll("audio");
-    allAudio.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-    });
+	const allAudio = document.querySelectorAll("audio");
+	allAudio.forEach((audio) => {
+		audio.pause();
+		audio.currentTime = 0;
+	});
 
-    // Also reset all play buttons back to the "play" icon
-    const allButtons = document.querySelectorAll(".thumbnail, .audio-btn"); // adjust selector to your class
-    allButtons.forEach(btn => {
-        if (btn.src.includes("stop")) {
-            btn.src = "./assets/nav-images/play-g79150a13d_1280.png";
-        }
-    });
+	// Explicit check targeting only the genuine stop image file name
+	const allButtons = document.querySelectorAll(".thumbnail, .audio-btn");
+	allButtons.forEach((btn) => {
+		if (btn.src.includes("stop-g55029e04a_1280.png")) {
+			btn.src = "./assets/nav-images/play-g79150a13d_1280.png";
+		}
+	});
 }
