@@ -1,196 +1,241 @@
-// Get Audio Source URL
-const playAudioElement = document.getElementById("playAudio"); // 1. Get the HTML element first
+/* ==========================================================================
+   Multi-Instance Audio Player Engine (Howler.js + HTML5 Canvas Waveform)
+   ========================================================================== */
 
-let srcUrl = "";
+class AudioPlayerInstance {
+	constructor(playerContainer) {
+		this.container = playerContainer;
 
-if (playAudioElement) {
-	srcUrl = playAudioElement.src; // 2. Access the 'src' property of that element to get the string URL
-} else {
-	console.error("The audio element with ID 'playAudio' was not found.");
-}
+		// Find scoped elements within THIS specific player layout block
+		this.playAudioElement = playerContainer.querySelector("audio");
+		this.playPauseBtn = playerContainer.querySelector(".audio-button");
+		this.currentTimeEl =
+			playerContainer.parentElement.querySelector("#currentTime") ||
+			playerContainer.querySelector(".time span:first-child");
+		this.durationEl =
+			playerContainer.parentElement.querySelector("#duration") ||
+			playerContainer.querySelector(".time span:last-child");
+		this.volumeSlider =
+			playerContainer.querySelector('input[id^="volume"]') ||
+			playerContainer.querySelector(".controls input:first-of-type");
+		this.speedSlider =
+			playerContainer.querySelector('input[id^="speed"]') ||
+			playerContainer.querySelector(".controls input:last-of-type");
+		this.canvas =
+			playerContainer.parentElement.querySelector(".waveform-canvas") ||
+			playerContainer.querySelector("canvas");
 
-// Get other DOM elements
-const playPauseBtn = document.getElementById("playPauseBtn");
-const currentTimeEl = document.getElementById("currentTime");
-const durationEl = document.getElementById("duration");
-const volumeSlider = document.getElementById("volume");
-const speedSlider = document.getElementById("speed");
-const canvas = document.getElementById("waveform");
-const ctx = canvas.getContext("2d");
-
-let peaks = [];
-let progressInterval;
-
-// Initialize Howler
-const sound = new Howl({
-	src: [srcUrl],
-	html5: true,
-	onplay: updateProgress,
-	onseek: updateProgress,
-	onload: () => {
-		durationEl.textContent = formatTime(sound.duration());
-		if (peaks.length === 0) generateWaveform(srcUrl);
-	},
-});
-
-// Format time helper
-const formatTime = (secs) => {
-	const m = Math.floor(secs / 60);
-	const s = Math.floor(secs % 60)
-		.toString()
-		.padStart(2, "0");
-	return `${m}:${s}`;
-};
-
-// Resize canvas
-function resizeCanvas() {
-	const rect = canvas.getBoundingClientRect();
-	canvas.width = rect.width * window.devicePixelRatio * 0.8;
-	canvas.height = rect.height * window.devicePixelRatio;
-	ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-	drawWaveform(0);
-}
-
-// Helper to reinitialize waveform once modal is visible
-function showWaveformWhenVisible() {
-	const rect = canvas.getBoundingClientRect();
-	if (rect.width > 0 && rect.height > 0) {
-		resizeCanvas();
-		if (peaks.length === 0) generateWaveform(srcUrl);
-	} else {
-		// Retry until modal is visible
-		requestAnimationFrame(showWaveformWhenVisible);
-	}
-}
-
-window.addEventListener("resize", resizeCanvas);
-showWaveformWhenVisible();
-// resizeCanvas();
-
-// Generate waveform from real audio data
-async function generateWaveform(url) {
-	const response = await fetch(url);
-	const arrayBuffer = await response.arrayBuffer();
-	const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-	const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-
-	const rawData = audioBuffer.getChannelData(0);
-	const samples = 200; // fewer samples = smoother waveform
-	const blockSize = Math.floor(rawData.length / samples);
-	peaks = [];
-
-	for (let i = 0; i < samples; i++) {
-		let sum = 0;
-		for (let j = 0; j < blockSize; j++) {
-			sum += Math.abs(rawData[i * blockSize + j]);
-		}
-		peaks.push(sum / blockSize);
-	}
-
-	drawWaveform(0);
-}
-
-// Get CSS variables from stylesheet
-function getCssVariable(name) {
-	// We get the computed styles for the <html> element (the root)
-	return getComputedStyle(document.documentElement)
-		.getPropertyValue(name)
-		.trim();
-}
-
-// Get colors for waveform
-const FOREGROUND_COLOR = getCssVariable("--waveform-foreground");
-const BACKGROUND_COLOR = getCssVariable("--waveform-background");
-
-
-// Draw waveform
-function drawWaveform(progress = 0) {
-
-	const FOREGROUND_COLOR = getCssVariable("--waveform-foreground");
-	const BACKGROUND_COLOR = getCssVariable("--waveform-background");
-	const width = canvas.width / window.devicePixelRatio;
-	const height = canvas.height / window.devicePixelRatio;
-	ctx.clearRect(0, 0, width, height);
-
-	const barWidth = width / peaks.length;
-	const midY = height / 2;
-
-	peaks.forEach((amp, i) => {
-		const x = i * barWidth;
-		const barHeight = amp * height * 0.9;
-		const isPlayed = i / peaks.length < progress;
-		ctx.fillStyle = isPlayed ? FOREGROUND_COLOR : BACKGROUND_COLOR;
-		ctx.fillRect(x, midY - barHeight / 2, barWidth * 0.9, barHeight);
-	});
-}
-
-// Play / Pause
-playPauseBtn.addEventListener("click", () => {
-	if (sound.playing()) {
-		sound.pause();
-		playPauseBtn.textContent = "▶️";
-	} else {
-		sound.play();
-		playPauseBtn.textContent = "⏸";
-	}
-});
-
-// Update progress
-function updateProgress() {
-	clearInterval(progressInterval);
-	progressInterval = setInterval(() => {
-		if (!sound.playing()) {
-			clearInterval(progressInterval);
+		if (!this.playAudioElement || !this.canvas) {
+			console.warn(
+				"Skipping player initialization: missing core components inside container.",
+				playerContainer,
+			);
 			return;
 		}
-		const seek = sound.seek();
-		const dur = sound.duration();
-		const progress = seek / dur;
 
-		currentTimeEl.textContent = formatTime(seek);
-		drawWaveform(progress);
-	}, 200);
+		this.ctx = this.canvas.getContext("2d");
+		this.srcUrl = this.playAudioElement.src;
+		this.peaks = [];
+		this.progressInterval = null;
+		this.sound = null;
+
+		this.init();
+	}
+
+	init() {
+		// Initialize dynamic Howler profile instance bound to scoped properties
+		this.sound = new Howl({
+			src: [this.srcUrl],
+			html5: true,
+			onplay: () => this.updateProgress(),
+			onseek: () => this.updateProgress(),
+			onload: () => {
+				if (this.durationEl)
+					this.durationEl.textContent = this.formatTime(this.sound.duration());
+				if (this.peaks.length === 0) this.generateWaveform(this.srcUrl);
+			},
+		});
+
+		// Set up local Event Bindings
+		if (this.playPauseBtn) {
+			this.playPauseBtn.addEventListener("click", () => this.togglePlay());
+		}
+
+		this.canvas.addEventListener("click", (e) => this.handleSeek(e));
+
+		if (this.volumeSlider) {
+			this.volumeSlider.addEventListener("input", () =>
+				this.sound.volume(parseFloat(this.volumeSlider.value)),
+			);
+		}
+
+		if (this.speedSlider) {
+			this.speedSlider.addEventListener("input", () =>
+				this.sound.rate(parseFloat(this.speedSlider.value)),
+			);
+		}
+
+		// Window resize framework hook
+		window.addEventListener("resize", () => this.resizeCanvas());
+		this.showWaveformWhenVisible();
+	}
+
+	formatTime(secs) {
+		const m = Math.floor(secs / 60);
+		const s = Math.floor(secs % 60)
+			.toString()
+			.padStart(2, "0");
+		return `${m}:${s}`;
+	}
+
+	resizeCanvas() {
+		const rect = this.canvas.getBoundingClientRect();
+		if (rect.width === 0 || rect.height === 0) return;
+		this.canvas.width = rect.width * window.devicePixelRatio * 0.8;
+		this.canvas.height = rect.height * window.devicePixelRatio;
+		this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+		this.drawWaveform(
+			this.sound ? this.sound.seek() / this.sound.duration() : 0,
+		);
+	}
+
+	showWaveformWhenVisible() {
+		const rect = this.canvas.getBoundingClientRect();
+		if (rect.width > 0 && rect.height > 0) {
+			this.resizeCanvas();
+			if (this.peaks.length === 0) this.generateWaveform(this.srcUrl);
+		} else {
+			requestAnimationFrame(() => this.showWaveformWhenVisible());
+		}
+	}
+
+	async generateWaveform(url) {
+		try {
+			const response = await fetch(url);
+			const arrayBuffer = await response.arrayBuffer();
+			const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+			const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+			const rawData = audioBuffer.getChannelData(0);
+			const samples = 200;
+			const blockSize = Math.floor(rawData.length / samples);
+			this.peaks = [];
+
+			for (let i = 0; i < samples; i++) {
+				let sum = 0;
+				for (let j = 0; j < blockSize; j++) {
+					sum += Math.abs(rawData[i * blockSize + j]);
+				}
+				this.peaks.push(sum / blockSize);
+			}
+			this.drawWaveform(0);
+		} catch (err) {
+			console.error(
+				"Failed to extract waveform profile layers from audio file binary:",
+				err,
+			);
+		}
+	}
+
+	getCssVariable(name) {
+		return (
+			getComputedStyle(document.documentElement)
+				.getPropertyValue(name)
+				.trim() || (name === "--waveform-foreground" ? "#ff0000" : "#cccccc")
+		);
+	}
+
+	drawWaveform(progress = 0) {
+		if (this.peaks.length === 0) return;
+		const FOREGROUND_COLOR = this.getCssVariable("--waveform-foreground");
+		const BACKGROUND_COLOR = this.getCssVariable("--waveform-background");
+		const width = this.canvas.width / window.devicePixelRatio;
+		const height = this.canvas.height / window.devicePixelRatio;
+
+		this.ctx.clearRect(0, 0, width, height);
+
+		const barWidth = width / this.peaks.length;
+		const midY = height / 2;
+
+		this.peaks.forEach((amp, i) => {
+			const x = i * barWidth;
+			const barHeight = amp * height * 0.9;
+			const isPlayed = i / this.peaks.length < progress;
+			this.ctx.fillStyle = isPlayed ? FOREGROUND_COLOR : BACKGROUND_COLOR;
+			this.ctx.fillRect(x, midY - barHeight / 2, barWidth * 0.9, barHeight);
+		});
+	}
+
+	togglePlay() {
+		if (this.sound.playing()) {
+			this.sound.pause();
+			if (this.playPauseBtn) this.playPauseBtn.textContent = "▶️";
+		} else {
+			// Global pause intercept: Silences all other module engines active across page layers
+			window.activeAudioPlayers.forEach((p) => {
+				if (p !== this) p.pause();
+			});
+			this.sound.play();
+			if (this.playPauseBtn) this.playPauseBtn.textContent = "⏸";
+		}
+	}
+
+	pause() {
+		if (this.sound && this.sound.playing()) {
+			this.sound.pause();
+			if (this.playPauseBtn) this.playPauseBtn.textContent = "▶️";
+		}
+	}
+
+	stop() {
+		if (this.sound) {
+			this.sound.stop();
+		}
+		clearInterval(this.progressInterval);
+		if (this.playPauseBtn) this.playPauseBtn.textContent = "▶️";
+		if (this.currentTimeEl) this.currentTimeEl.textContent = "0:00";
+		this.drawWaveform(0);
+	}
+
+	updateProgress() {
+		clearInterval(this.progressInterval);
+		this.progressInterval = setInterval(() => {
+			if (!this.sound.playing()) {
+				clearInterval(this.progressInterval);
+				return;
+			}
+			const seek = this.sound.seek();
+			const dur = this.sound.duration();
+			const progress = seek / dur;
+
+			if (this.currentTimeEl)
+				this.currentTimeEl.textContent = this.formatTime(seek);
+			this.drawWaveform(progress);
+		}, 200);
+	}
+
+	handleSeek(e) {
+		const rect = this.canvas.getBoundingClientRect();
+		const clickX = e.clientX - rect.left;
+		const progress = clickX / rect.width;
+		this.sound.seek(progress * this.sound.duration());
+		this.drawWaveform(progress);
+	}
 }
 
-// Click to seek
-canvas.addEventListener("click", (e) => {
-	const rect = canvas.getBoundingClientRect();
-	const clickX = e.clientX - rect.left;
-	const progress = clickX / rect.width;
-	sound.seek(progress * sound.duration());
-	drawWaveform(progress);
+// Global scope orchestration hooks
+window.activeAudioPlayers = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+	// Select all audio module configuration wrappers
+	const internalLayouts = document.querySelectorAll(".audio-player");
+	internalLayouts.forEach((layout) => {
+		const structuralInstance = new AudioPlayerInstance(layout);
+		window.activeAudioPlayers.push(structuralInstance);
+	});
 });
 
-// Volume and speed
-volumeSlider.addEventListener("input", () =>
-	sound.volume(parseFloat(volumeSlider.value))
-);
-speedSlider.addEventListener("input", () =>
-	sound.rate(parseFloat(speedSlider.value))
-);
-
+// Bridge function for modal closing intercept actions (onClick calls)
 function stopAudioPlayer() {
-   // 1. Tell Howler to stop the sound
-    // This automatically pauses and resets the seek time to 0
-    if (sound) {
-        sound.stop();
-    }
-
-    // 2. Reset the Play/Pause button icon
-    const playBtn = document.getElementById("playPauseBtn");
-    if (playBtn) {
-        playBtn.textContent = "▶️";
-    }
-
-    // 3. Reset the time display
-    const timeDisplay = document.getElementById("currentTime");
-    if (timeDisplay) {
-        timeDisplay.textContent = "0:00";
-    }
-
-    // 4. Reset the Waveform visual
-    // This is important! stop() doesn't clear the canvas progress.
-    if (typeof drawWaveform === "function") {
-        drawWaveform(0); 
-    }
+	window.activeAudioPlayers.forEach((player) => player.stop());
 }

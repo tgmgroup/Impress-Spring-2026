@@ -2,11 +2,6 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<!-- <meta
-			name="viewport"
-			content="width=1920, height=1080, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>-->
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<title>Impress Magazine - Spring, 2026</title>
@@ -17,15 +12,6 @@
 		<link href="/assets/css/styles-tooltip.css" rel="stylesheet" />
 		<link href="/assets/css/styles-modal.css" rel="stylesheet" />
 		<link href="/assets/css/styles-audio-player.css" rel="stylesheet" />
-
-		<!-- Unused stylesheets for now -->
-		<!-- 
-		<link href="styles-slideshow.css" rel="stylesheet" />
-		<link href="styles-slideshow-double.css" rel="stylesheet" />
-		
-		<link href="styles-modal-split.css" rel="stylesheet" /> 
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-		-->
 
 		<script type="text/javascript" src="/assets/scripts/scripts.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
@@ -104,9 +90,7 @@
 				>
 					<div class="left-content">
 						<!-- Audio for Intro Text -->
-
 						<audio id="audio1-1" class="playondemand">
-							<!-- empty audio, just used to open the modal -->
 							<source src="./assets/audio/audio0-0.mp3" type="audio/mp3" />
 						</audio>
 
@@ -212,15 +196,15 @@
 								<span class="tooltip">
 									From the dark cold days of winter, the weather gets warmer,
 									flowers bloom, and people start going outside and exploring.
-									<span class="tooltiptext">
-										冬の暗く寒い日々から、気候は暖かくなり、花が咲き、人々は外に出て探索を始めます。
-									</span>
+									<span class="tooltiptext"
+										>冬の暗く寒い日々から、気候は暖かくなり、花が咲き、人々は外に出て探索を始めます。</span
+									>
 								</span>
 								<span class="tooltip">
 									It’s a time to head out and start new adventures.
-									<span class="tooltiptext">
-										外へ飛び出して、新しい冒険を始める時なのです。
-									</span>
+									<span class="tooltiptext"
+										>外へ飛び出して、新しい冒険を始める時なのです。</span
+									>
 								</span>
 							</p>
 
@@ -236,30 +220,30 @@
 							>
 								<span class="tooltip">
 									In this issue, we also head out on a journey to learn.
-									<span class="tooltiptext">
-										今号では、私たちも学びの旅へと「出発」します。
-									</span>
+									<span class="tooltiptext"
+										>今号では、私たちも学びの旅へと「出発」します。</span
+									>
 								</span>
 								<span class="tooltip">
 									We play with the names of different countries around the
 									world.
-									<span class="tooltiptext">
-										世界中のさまざまな国名を使って言葉遊びをします。
-									</span>
+									<span class="tooltiptext"
+										>世界中のさまざまな国名を使って言葉遊びをします。</span
+									>
 								</span>
 								<span class="tooltip">
 									We visit Bali, one of the most famous tourist destinations
 									ever.
-									<span class="tooltiptext">
-										史上最も有名な観光地の一つであるバリ島を訪れます。
-									</span>
+									<span class="tooltiptext"
+										>史上最も有名な観光地の一つであるバリ島を訪れます。</span
+									>
 								</span>
 								<span class="tooltip">
 									And we learn about animals that head out and make their own
 									long journeys.
-									<span class="tooltiptext">
-										引して、自ら遠い旅へと出発する動物たちについても学びます。
-									</span>
+									<span class="tooltiptext"
+										>引して、自ら遠い旅へと出発する動物たちについても学びます。</span
+									>
 								</span>
 							</p>
 
@@ -276,15 +260,15 @@
 								<span class="tooltip">
 									Each page in this magazine is a different way to head out and
 									learn about our world.
-									<span class="tooltiptext">
-										この雑誌のすべてのページが、外の世界へ「飛び出し」、私たちの世界について学ぶための異なる方法になっています。
-									</span>
+									<span class="tooltiptext"
+										>この雑誌のすべてのページが、外の世界へ「飛び出し」、私たちの世界について学ぶための異なる方法になっています。</span
+									>
 								</span>
 								<span class="tooltip">
 									Are you ready to begin the journey and discover something new?
-									<span class="tooltiptext">
-										旅を始めて、何か新しいことを発見する準備はできましたか？
-									</span>
+									<span class="tooltiptext"
+										>旅を始めて、何か新しいことを発見する準備はできましたか？</span
+									>
 								</span>
 							</p>
 
@@ -310,16 +294,16 @@
 									src="assets/audio/audio0-1.mp3"
 									type="audio/mp3"
 								></audio>
-								<canvas id="waveform" class="waveform-canvas"></canvas>
+								<canvas class="waveform-canvas"></canvas>
 								<div class="time">
-									<span id="currentTime">0:00</span>
-									<span id="duration">0:00</span>
+									<span class="currentTime">0:00</span>
+									<span class="duration">0:00</span>
 								</div>
 								<div class="controls">
 									<label>🔊</label>
 									<input
 										type="range"
-										id="volume"
+										class="volume"
 										min="0"
 										max="1"
 										step="0.05"
@@ -328,7 +312,7 @@
 									<label>⏩</label>
 									<input
 										type="range"
-										id="speed"
+										class="speed"
 										min="0.5"
 										max="2"
 										step="0.05"
@@ -349,7 +333,6 @@
 
 		<script src="/assets/scripts/scripts-snow.js" defer></script>
 		<script src="/assets/scripts/scripts-magazine-nav.js"></script>
-
 		<script
 			type="text/javascript"
 			src="/assets/scripts/scripts-audio-player.js"
