@@ -247,3 +247,7 @@ document.addEventListener("mousemove", (e) => {
 		ticking = true;
 	}
 });
+
+function stopAudioPlayer() {
+	stopAllAudio();
+}
